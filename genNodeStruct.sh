@@ -3,6 +3,13 @@ RED='\033[0;31m'
 GREEN='\033[1;32m'
 YELLOW='\e[93m'
 NC='\033[0m' #no color
+
+printf "New Node.js Project,Enter the name of Project Directory."
+read RESPONSE
+
+mkdir $RESPONSE
+cd $RESPONSE
+
 printf "Generating Node Folder/directory Structure...\n"
 printf "\n"
 
@@ -14,7 +21,7 @@ printf "   Creating folders/Directories...\n"
 for i in "${dirName[@]}"
 do
 	mkdir $i
-    printf "$i\t ${GREEN} \u2714 created ${NC} \n"
+    printf "$i\t \t ${GREEN} \u2714 created ${NC} \n"
 done
 
 
@@ -73,4 +80,25 @@ for d in */ ; do
     fi
 done
 
+printf "Do you want ant custom directory? Enter Yes/y or No/n : "
+read CUSTDIR
+
+if [[ "$RESPONSE" == "Y" || "$RESPONSE" == "y" || "$RESPONSE" == "Yes" || "$RESPONSE" == "yes" ]];
+    then
+    mkdir $CUSTDIR
+    printf "$CUSTDIR\t \t ${GREEN} \u2714 created ${NC} \n"
+fi
+
+
+
+printf "Creating Enter Point index.js \n"
+
+touch index.js
+if (( $? )); then
+            exit 1
+fi
+
+printf "Initiating npm package..... \n"
+printf "${YELLOW}DO NOT CHANGE THE ENTRY POINT IN NPM PACKAGE CONFIG ${NC} \n"
+npm init
 
